@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "tool": {
+    "name": "oss-continuity",
+    "version": "0.1.0"
+  },
+  "repository": "sindresorhus/slugify",
+  "source": "local",
+  "location": "/tmp/slugify",
+  "generated_at": "2026-09-23T06:23:28+00:00",
+  "summary": {
+    "pass": 8,
+    "warn": 5,
+    "fail": 6,
+    "info": 0,
+    "unknown": 0
+  },
+  "continuity": {
+    "primary_committers": "fail",
+    "recent_committers": "pass",
+    "maintainers_doc": "fail",
+    "codeowners": "fail",
+    "readme": "pass",
+    "contributing": "fail",
+    "dev_setup": "warn",
+    "architecture": "fail",
+    "continuity_doc": "warn",
+    "latest_release": "pass",
+    "release_process": "fail",
+    "automated_release": "warn",
+    "changelog": "warn",
+    "ci": "pass",
+    "secrets_documented": "pass",
+    "dependency_updates": "warn",
+    "tests": "pass",
+    "license": "pass",
+    "security_policy": "pass"
+  },
+  "missing_handoff_artifacts": [
+    "MAINTAINER.md",
+    "CODEOWNERS",
+    "CONTRIBUTING.md",
+    "ARCHITECTURE.md",
+    "RELEASE.md",
+    "DEVELOPMENT.md",
+    "CONTINUITY.md",
+    "CHANGELOG.md"
+  ],
+  "actions": [
+    "Knowledge is concentrated in one person: name a backup maintainer and record them in MAINTAINER.md.",
+    "List current maintainers, their responsibilities and a backup in MAINTAINER.md.",
+    "Add a CODEOWNERS file so review responsibility is explicit and survives turnover.",
+    "Add CONTRIBUTING.md explaining how changes are proposed, reviewed and merged.",
+    "Describe the main components and how they fit together in ARCHITECTURE.md.",
+    "Write down how a release is cut and published (RELEASE.md).",
+    "Write down how to set up a development environment and run the tests (DEVELOPMENT.md or a section in CONTRIBUTING.md).",
+    "Add CONTINUITY.md: project status, who can take over, and which accounts and credentials a successor needs.",
+    "Automate publishing in CI so releasing does not depend on one person's machine and credentials.",
+    "Keep a changelog so a successor can see what changed between releases.",
+    "Configure Dependabot or Renovate so dependency updates don't rely on one person noticing."
+  ],
+  "sections": [
+    {
+      "id": "maintainers",
+      "title": "Maintainer continuity",
+      "checks": [
+        {
+          "id": "primary_committers",
+          "label": "Primary committers",
+          "status": "fail",
+          "summary": "1 of 2",
+          "evidence": [
+            "1 of 2 people authored at least half of the 7 human commits in the last 365 days",
+            "Sindre Sorhus <sindresorhus@gmail.com>: 6 commits (86%)",
+            "Mochammad Fadhlan Al-Ghiffari <136257088+mfa-g@users.noreply.github.com>: 1 commits (14%)"
+          ],
+          "remediation": "Knowledge is concentrated in one person: name a backup maintainer and record them in MAINTAINER.md.",
+          "artifact": "MAINTAINER.md"
+        },
+        {
+          "id": "recent_committers",
+          "label": "Active in last 90 days",
+          "status": "pass",
+          "summary": "2",
+          "evidence": [
+            "Sindre Sorhus <sindresorhus@gmail.com>: 6 commit(s)",
+            "Mochammad Fadhlan Al-Ghiffari <136257088+mfa-g@users.noreply.github.com>: 1 commit(s)"
+          ],
+          "remediation": null,
+          "artifact": null
+        },
+        {
+          "id": "maintainers_doc",
+          "label": "Maintainers documented",
+          "status": "fail",
+          "summary": "missing",
+          "evidence": [
+            "No MAINTAINERS, MAINTAINER, OWNERS or GOVERNANCE file found"
+          ],
+          "remediation": "List current maintainers, their responsibilities and a backup in MAINTAINER.md.",
+          "artifact": "MAINTAINER.md"
+        },
+        {
+          "id": "codeowners",
+          "label": "CODEOWNERS configured",
+          "status": "fail",
+          "summary": "missing",
+          "evidence": [
+            "No CODEOWNERS file in the root, .github/ or docs/"
+          ],
+          "remediation": "Add a CODEOWNERS file so review responsibility is explicit and survives turnover.",
+          "artifact": "CODEOWNERS"
+        }
+      ]
+    },
+    {
+      "id": "knowledge",
+      "title": "Knowledge continuity",
+      "checks": [
+        {
+          "id": "readme",
+          "label": "README",
+          "status": "pass",
+          "summary": "found",
+          "evidence": [
+            "found: readme.md"
+          ],
+          "remediation": null,
+          "artifact": null
+        },
+        {
+          "id": "contributing",
+          "label": "Contribution guide",
+          "status": "fail",
+          "summary": "missing",
+          "evidence": [
+            "No CONTRIBUTING file in the root, .github/, docs/ or doc/"
+          ],
+          "remediation": "Add CONTRIBUTING.md explaining how changes are proposed, reviewed and merged.",
+          "artifact": "CONTRIBUTING.md"
+        },
+        {
+          "id": "dev_setup",
+          "label": "Development setup",
+          "status": "warn",
+          "summary": "tooling only",
+          "evidence": [
+            "build tooling found (package.json) but no written setup instructions"
+          ],
+          "remediation": "Write down how to set up a development environment and run the tests (DEVELOPMENT.md or a section in CONTRIBUTING.md).",
+          "artifact": "DEVELOPMENT.md"
+        },
+        {
+          "id": "architecture",
+          "label": "Architecture documented",
+          "status": "fail",
+          "summary": "missing",
+          "evidence": [
+            "No ARCHITECTURE/DESIGN document, ADR directory or architecture section found"
+          ],
+          "remediation": "Describe the main components and how they fit together in ARCHITECTURE.md.",
+          "artifact": "ARCHITECTURE.md"
+        },
+        {
+          "id": "continuity_doc",
+          "label": "Continuity / handoff plan",
+          "status": "warn",
+          "summary": "missing",
+          "evidence": [
+            "No CONTINUITY.md or continuity.yaml found"
+          ],
+          "remediation": "Add CONTINUITY.md: project status, who can take over, and which accounts and credentials a successor needs.",
+          "artifact": "CONTINUITY.md"
+        }
+      ]
+    },
+    {
+      "id": "releases",
+      "title": "Release continuity",
+      "checks": [
+        {
+          "id": "latest_release",
+          "label": "Latest release",
+          "status": "pass",
+          "summary": "13 days ago (v3.0.2)",
+          "evidence": [
+            "24 release(s)/tag(s) found; newest: tag v3.0.2 on 2026-09-09"
+          ],
+          "remediation": null,
+          "artifact": null
+        },
+        {
+          "id": "release_process",
+          "label": "Release process documented",
+          "status": "fail",
+          "summary": "missing",
+          "evidence": [
+            "No RELEASE/RELEASING document or release section in the docs"
+          ],
+          "remediation": "Write down how a release is cut and published (RELEASE.md).",
+          "artifact": "RELEASE.md"
+        },
+        {
+          "id": "automated_release",
+          "label": "Automated release",
+          "status": "warn",
+          "summary": "not detected",
+          "evidence": [
+            "no CI workflow was found that publishes packages or creates releases"
+          ],
+          "remediation": "Automate publishing in CI so releasing does not depend on one person's machine and credentials.",
+          "artifact": "RELEASE.md"
+        },
+        {
+          "id": "changelog",
+          "label": "Changelog",
+          "status": "warn",
+          "summary": "missing",
+          "evidence": [
+            "No CHANGELOG, CHANGES, HISTORY or NEWS file"
+          ],
+          "remediation": "Keep a changelog so a successor can see what changed between releases.",
+          "artifact": "CHANGELOG.md"
+        }
+      ]
+    },
+    {
+      "id": "operations",
+      "title": "Operational continuity",
+      "checks": [
+        {
+          "id": "ci",
+          "label": "CI configuration",
+          "status": "pass",
+          "summary": "1 file(s)",
+          "evidence": [
+            "found: .github/workflows/main.yml"
+          ],
+          "remediation": null,
+          "artifact": null
+        },
+        {
+          "id": "secrets_documented",
+          "label": "CI secrets documented",
+          "status": "pass",
+          "summary": "none referenced",
+          "evidence": [
+            "CI configuration references no custom secrets"
+          ],
+          "remediation": null,
+          "artifact": null
+        },
+        {
+          "id": "dependency_updates",
+          "label": "Dependency update process",
+          "status": "warn",
+          "summary": "not configured",
+          "evidence": [
+            "no Dependabot or Renovate configuration found"
+          ],
+          "remediation": "Configure Dependabot or Renovate so dependency updates don't rely on one person noticing.",
+          "artifact": null
+        },
+        {
+          "id": "tests",
+          "label": "Automated tests",
+          "status": "pass",
+          "summary": "1 file(s)",
+          "evidence": [
+            "e.g. test.js"
+          ],
+          "remediation": null,
+          "artifact": null
+        }
+      ]
+    },
+    {
+      "id": "governance",
+      "title": "Governance",
+      "checks": [
+        {
+          "id": "license",
+          "label": "License",
+          "status": "pass",
+          "summary": "found",
+          "evidence": [
+            "found: license"
+          ],
+          "remediation": null,
+          "artifact": null
+        },
+        {
+          "id": "security_policy",
+          "label": "Security policy",
+          "status": "pass",
+          "summary": "found",
+          "evidence": [
+            "found: .github/security.md"
+          ],
+          "remediation": null,
+          "artifact": null
+        }
+      ]
+    }
+  ],
+  "facts": {
+    "commit_window_days": 365,
+    "commits_analyzed": 7,
+    "bot_commits": 0,
+    "commits_truncated": false,
+    "top_committers": [
+      {
+        "identity": "sindresorhus@gmail.com",
+        "name": "Sindre Sorhus",
+        "commits": 6,
+        "share": 0.857
+      },
+      {
+        "identity": "136257088+mfa-g@users.noreply.github.com",
+        "name": "Mochammad Fadhlan Al-Ghiffari",
+        "commits": 1,
+        "share": 0.143
+      }
+    ],
+    "latest_release": {
+      "tag": "v3.0.2",
+      "kind": "tag",
+      "date": "2026-09-09T16:09:09+02:00"
+    },
+    "files_scanned": 13
+  }
+}

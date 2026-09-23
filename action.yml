@@ -1,0 +1,43 @@
+name: "OSS Continuity"
+description: "Check whether an open-source repository could be handed over to a new maintainer."
+author: "The oss-continuity authors"
+branding:
+  icon: "users"
+  color: "blue"
+
+inputs:
+  path:
+    description: "Repository path to analyse"
+    default: "."
+  fail-on:
+    description: "Fail the step at this level or worse: fail, warn or never"
+    default: "never"
+  python-version:
+    description: "Python version used to run the tool"
+    default: "3.12"
+
+outputs:
+  report:
+    description: "Path to the Markdown report"
+    value: ${{ steps.run.outputs.report }}
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+    - shell: bash
+      run: pip install --quiet "${{ github.action_path }}"
+    - id: run
+      shell: bash
+      env:
+        TARGET: ${{ inputs.path }}
+        FAIL_ON: ${{ inputs.fail-on }}
+      run: |
+        report="$RUNNER_TEMP/continuity-report.md"
+        status=0
+        oss-continuity check "$TARGET" --format markdown --output "$report" --fail-on "$FAIL_ON" || status=$?
+        cat "$report" >> "$GITHUB_STEP_SUMMARY"
+        echo "report=$report" >> "$GITHUB_OUTPUT"
+        exit $status

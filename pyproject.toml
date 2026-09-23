@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling>=1.21"]
+build-backend = "hatchling.build"
+
+[project]
+name = "oss-continuity"
+version = "0.1.0"
+description = "Could someone else take over this open-source project? Evidence-based maintainer handoff analysis."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
+authors = [{ name = "The oss-continuity authors" }]
+keywords = ["open-source", "maintainers", "bus-factor", "sustainability", "handoff", "github"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff>=0.5"]
+
+[project.scripts]
+oss-continuity = "oss_continuity.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/KenuriPerera/oss-continuity"
+Issues = "https://github.com/KenuriPerera/oss-continuity/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/oss_continuity"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["UP007", "UP045"]
